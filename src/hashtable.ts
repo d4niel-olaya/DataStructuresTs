@@ -27,6 +27,24 @@ export class HashTable{
         this.data[address].push([key,value]);
         return this.data;
     }
+
+    /**
+     * 
+     * @param key Key Value
+     * @returns Value or undefined
+     */
+    get(key:string){
+        const address:number = this.hashMethod(key)
+        const currentBucket:Array<any> = this.data[address];
+        if(currentBucket){
+            for(let i:number = 0; i < currentBucket.length; i++){
+                if(currentBucket[i][0] === key){
+                    return currentBucket[i][1]
+                }
+            }
+        }
+        return undefined;
+    }
 }
 
 
