@@ -45,6 +45,21 @@ export class HashTable{
         }
         return undefined;
     }
+
+    deleted(key:string){
+        const address:number = this.hashMethod(key);
+        let bucket: Array<any> = this.data[address];
+        if(bucket){
+            let newBucket = bucket.filter((Element) => Element[0] != key) 
+            if(newBucket.length == 0){
+                delete this.data[address] 
+            }else{
+                this.data[address] = newBucket
+            }
+            return true;
+        }
+        return false;
+    }
 }
 
 
